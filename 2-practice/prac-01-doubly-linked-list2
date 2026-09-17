@@ -12,8 +12,9 @@ class DoublyLinkedList:
         self.tail = None
 
     #=================================================================================#
-    # 리스트의 맨 앞에 삽입
-    def insert(self, data):
+    # 1. 삽입 메서드
+    # 1.1. 리스트의 맨 앞에 삽입
+    def insert_first(self, data):
         new_node = Node(data)           # data를 가진 새로운 노드 생성.
         if self.head is None:           # 1. 빈 리스트인 경우.
             self.head = new_node
@@ -24,9 +25,8 @@ class DoublyLinkedList:
             new_node.next = self.head   #   new <-> next(=head)
             self.head = new_node        #   new(=head) <-> next
             return
-     #=================================================================================#
-
-    # 리스트의 맨 뒤에 삽입
+    
+    # 1.2. 리스트의 맨 뒤에 삽입
     def insert_last(self, data):
         new_node = Node(data)
 
@@ -41,8 +41,7 @@ class DoublyLinkedList:
         self.tail.next = new_node
         self.tail = new_node
 
-    #=================================================================================#
-    # target_data를 가진 노드 뒤에 data를 가진 노드 삽입
+    # 1.3. target_data를 가진 노드 뒤에 data를 가진 노드 삽입
     def insert_after(self, target_data, data):
         new_node = Node(data)       # data를 가진 새로운 노드 생성.
         search_list = self.head     # 탐색을 위한 head 복사.
@@ -61,20 +60,22 @@ class DoublyLinkedList:
                 
         print(f"{target_data} 탐색 실패")
         return
-            
-    # 리스트의 맨 앞 노드 삭제
-    def delete_first(self):
-        
-        
-                    
-        pass
-
-    # 리스트의 맨 뒤 노드 삭제
-    def delete_last(self):
-        pass
+    
     #=================================================================================#
+    # 2. 삭제 메서드        
+    # 2.1. 리스트의 맨 앞 노드 삭제
+    def delete_first(self):
+        self.head =  self.head.next                 # first_node <-> next_node(=head)
+        self.head.prev = None                       # first_node  -> next_node(=head)
+        return
 
-    # data를 가진 노드 삭제
+    # 2.2. 리스트의 맨 뒤 노드 삭제
+    def delete_last(self):
+        self.tail = self.tail.prev                  # prev_node(=tail) <-> last_node
+        self.tail.next = None                       # prev_node(=tail) <-  last_node
+        return
+    
+    # 2.3. data를 가진 노드 삭제
     def delete(self, data):
         current = self.head
 
@@ -103,27 +104,56 @@ class DoublyLinkedList:
             self.tail = current.prev
 
     #=================================================================================#
-    # data 값을 가진 노드 검색
+    # 3. 탐색 메서드
+    # 3.1. data 값을 가진 노드 검색
     # 찾으면 해당 노드를 반환, 없으면 None 반환
     def search(self, data):
-        pass
+        search_list = self.head     # 탐색을 위한 head 복사.     
+         
+        while True:
+            if(search_list.data == data):           # 1. 탐색성공.
+                  return search_list
+            elif search_list.next != None:          # 2.1. 탐색실패 - 다음 노드가 존재.
+                  search_list = search_list.next      # => 다음 노드로 이동.
+            else:                                   # 2.2. 탐색실패 - 다음 노드가 없음. (마지막 노드인 경우)
+               break                                # 반복문 종료.
+                
+        print(f"{data} 탐색 실패")
+        return None
 
-    # head부터 tail까지 순서대로 출력
+    # 3.2. head부터 tail까지 순서대로 출력
     def print_forward(self): 
-        pass
+        search_list = self.head                     # 탐색을 위한 head 복사.     
+                 
+        while True:
+             if search_list.next != None:            # 1. 다음 노드가 존재.
+                print(f"{search_list.data} - ", end='')      # 출력 => 다음 노드로 이동.
+                search_list = search_list.next
+             else:                                   # 2. 다음 노드가 없음. (마지막 노드인 경우)
+                print(f"{search_list.data}")
+                break                                # 출력 => 반복문 종료.
+        return
 
-    # tail부터 head까지 순서대로 출력
+    # 3.3. tail부터 head까지 순서대로 출력
     def print_backward(self):
-        pass
+        search_list_reverse = self.tail
+        while True:
+            if search_list_reverse.prev != None:            # 1. 이전 노드가 존재.
+               print(f"{search_list_reverse.data} - ", end='')      # 출력 => 아전 노드로 이동.
+               search_list_reverse = search_list_reverse.prev
+            else:                                   # 2. 이전 노드가 없음. (= 첫 노드인 경우)
+               print(f"{search_list_reverse.data}")
+               break                                # 출력 => 반복문 종료.
+       
+        return
      #=================================================================================#
     
 
 if __name__ == '__main__':
-
     # --------------------------------
     # Test
     # --------------------------------
-
+    print("\n\n[Test]")
     L = DoublyLinkedList()
 
     # 삽입 테스트
@@ -132,11 +162,11 @@ if __name__ == '__main__':
     L.insert_last(30)
     L.insert_last(40)
 
-    print("Forward:")
+    print("Forward: ", end='')
     L.print_forward()
     # 예상 결과: 10 20 30 40
 
-    print("Backward:")
+    print("Backward: ", end='')
     L.print_backward()
     # 예상 결과: 40 30 20 10
 
@@ -144,7 +174,7 @@ if __name__ == '__main__':
     # 중간 삽입 테스트
     L.insert_after(20, 25)
 
-    print("After insert:")
+    print("After insert: ", end='')
     L.print_forward()
     # 예상 결과: 10 20 25 30 40
 
@@ -154,7 +184,7 @@ if __name__ == '__main__':
     L.delete_last()
     L.delete(25)
 
-    print("After delete:")
+    print("After delete: ", end='')
     L.print_forward()
     # 예상 결과: 20 30
 
