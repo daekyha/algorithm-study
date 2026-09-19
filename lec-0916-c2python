@@ -1,7 +1,0 @@
-def eval(self, exp):
-    stack = []
-    
-    
-    data = stack.pop
-    
-    #for i 
