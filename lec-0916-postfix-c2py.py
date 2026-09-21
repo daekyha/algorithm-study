@@ -30,21 +30,29 @@ int eval( char exp[] )
 """
 class Postfixfunct:
     def eval(self, exp):
-      stack = []
-      #data = stack.pop()
+        stack = []
+        #data = stack.pop()
       
-      for ch in exp:
-          if(ch != '+' and ch != '-' and ch != '*' and ch != '/'):
-                stack.push(ch)
-          else:
-                op2 = stack.pop()
-                op2 = stack.pop()
-                case 
-          print(ch)
+        for ch in exp:
+            if(ch != '+' and ch != '-' and ch != '*' and ch != '/'):
+                  stack.append(int(ch))   # 입력 ch = 스트링 -> 정수형 변환 후 push.
+            else:
+                  op2 = stack.pop()
+                  op1 = stack.pop()
+                  match ch:
+                      case '+':
+                          stack.append(op1 + op2)
+                      case '-':
+                          stack.append(op1 - op2)
+                      case '*':
+                          stack.append(op1 * op2)
+                      case '/':                
+                          stack.append(op1 // op2)    ##  / => 실수형 반환, // => 정수형 반환.
+        return stack.pop()
 
 if __name__ == '__main__':
     # --------------------------------
     # Test
     # --------------------------------
     P=Postfixfunct()
-    P.eval("3+2*1")
+    print(P.eval("321*+"))
