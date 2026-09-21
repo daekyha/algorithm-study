@@ -1,6 +1,6 @@
 
 # case 1
-def test01(self):
+def test01():
     print('\ntest01')
     a=[1,2,3]
     b=a
@@ -12,7 +12,7 @@ def test01(self):
     1. a와 b는 같은 리스트를 참조
 """
 # case 2
-def test02(self):
+def test02():
     print('\ntest02')
     a=[1,2,3]
     b=a[:]
@@ -25,7 +25,7 @@ def test02(self):
    2. a[:]    ->  전체 요소 복제
 """
 # case 3
-def test03(self):
+def test03():
     print('\ntest03')
     a=[[1,2],[3,4]]
     b=a[:]
@@ -37,7 +37,7 @@ def test03(self):
 """
 
 # case 4
-def test04(self):
+def test04():
     print('\ntest04')
     a=[[1,2],[3,4]]
     b=a[:]
