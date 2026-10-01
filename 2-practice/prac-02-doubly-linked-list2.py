@@ -1,3 +1,4 @@
+# lec0914 - 이중 연결 리스트 완성하기 (참조:1-sample/02-double-liked-list-2.py)
 # [1] 노드 틀 클래스
 class Node:
     def __init__(self, data):

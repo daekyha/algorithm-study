@@ -1,3 +1,4 @@
+# lec0914 - python 리스트 케이스별 출력
 
 # case 1
 def test01():

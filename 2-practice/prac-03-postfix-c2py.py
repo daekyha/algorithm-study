@@ -1,5 +1,8 @@
+# lec0916 후위표기 C -> Python 
+
 """
 [ Postfix_funct_C ]
+
 int eval( char exp[] )
 {
     int op1, op2, value, i = 0;
@@ -28,6 +31,8 @@ int eval( char exp[] )
     return pop(&s);
 }
 """
+
+# [ Postfix_funct_py ]
 class Postfixfunct:
     def eval(self, exp):
         stack = []
@@ -55,4 +60,12 @@ if __name__ == '__main__':
     # Test
     # --------------------------------
     P=Postfixfunct()
-    print(P.eval("321*+"))
+    
+    print("[Test 01]")
+    print(f"321*+ = {P.eval("321*+")}")                # 3+2*1     => 예상 결과 = 5.
+    
+    print("[Test 02]")
+    print(f"73-5* = {P.eval("73-5*")}")                # (7-3)*5   => 예상 결과 = 20.
+    
+    print("[Test 03]")
+    print(f"82/3-32*+ = {P.eval("82/3-32*+")}")        # ((8/2)-3)+(3*2)   => 예상 결과 = 5.
