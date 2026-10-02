@@ -1,4 +1,4 @@
-# lec0916 후위표기 C -> Python 
+# lec0916 - 후위표기 C => Python 
 
 """
 [ Postfix_funct_C ]

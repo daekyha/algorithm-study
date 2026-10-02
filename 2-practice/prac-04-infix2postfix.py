@@ -42,12 +42,28 @@ class Infix2Postfix:
     
     # 3. 토큰화 함수
     def tokenization(self, expression):
+        stack = []
         token = []
+        
         for ch in expression:
-            token.append(ch)
+            if(ch == '+' or ch == '-' or ch == '*' or ch == '/' or ch == '^'):  # 1) 토큰이 연산자인경우
+                num = 0
+                while len(stack) != 0:
+                    if stack[-1] == '.':
+                        pass
+                    else:
+                        num *= 10
+                        num += int(stack.pop())
+                       
+                        
+                token.append(ch)
+            else:                                                               # 2) 토큰이 피연산자인경우 (숫자 및 소수점)
+                stack.append(ch)
+                # 만약 123.98이라면 8-9-.-3-2-1순으로 스택에 들어감.
+                
         return token
 
-    # 4. 피 구별 함수
+    # 4. 피연산자 구별 함수
     def is_operand(self, token):
         if(token != '+' and token != '-' and token != '*' and token != '/' and token != '^'):
             return True
