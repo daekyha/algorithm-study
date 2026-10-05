@@ -27,7 +27,7 @@ print("Ex 2.2.")
 for var in [1,3,5]:
     print(var)
 
-# Ex 2.3. for <var> in range([start], end, [step])
+# Ex 2.3. for <var> in range([start], end, [step]): // end는 포함되지 않음.
 print("Ex 2.3.")
 for var in range(0,10,5):
     print(var)
