@@ -42,7 +42,7 @@ def test04():
     print('\ntest04')
     a=[[1,2],[3,4]]
     b=a[:]
-    a[0].append(5)
+    a[1].append(5)
     print('a:',a)
     print('b:',b)   
 
@@ -51,4 +51,46 @@ test02()
 test03()
 test04()
 
+print("=================================================================================")
+# ======================================================================================= #
+import copy
+# 1. copy.copy => 얕은 복사. a[:]와 동일.
+# 2. copy.deepcopy => 깊은 복사.
 
+# Algorithm-01-python-p.116
+# Ex 1. 리스트 복제
+o = [1, [2, 3], 4]
+k = o[:]
+s = copy.copy(o)
+d = copy.deepcopy(o)
+o[1][0] = 200
+o.append(10)
+print("[ Ex 01 ]")
+print(o)
+print(k)
+print(s)
+print(d)
+
+# Ex 2. 해쉬 복제
+o = {'a' : 1,  'b' : [2,3]}
+s = copy.copy(o)
+d = copy.deepcopy(o)
+o['b'].append(100)
+print("[ Ex 02 ]")
+print(o)
+print(s)
+print(d)
+
+# Ex 3. 클래스 복제
+class Myclass:
+    def __init__(self, x):
+        self.x = x
+
+o = Myclass([1, 2, 3])
+s = copy.copy(o)
+d = copy.deepcopy(o)
+o.x.append(100)
+print("[ Ex 03 ]")
+print(o.x)
+print(s.x)
+print(d.x)

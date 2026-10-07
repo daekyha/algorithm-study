@@ -1,4 +1,6 @@
 # lec0914 - 이중 연결 리스트 완성하기 (참조:1-sample/02-double-liked-list-2.py)
+# { } = 추가로 구현된 부분.
+
 # [1] 노드 틀 클래스
 class Node:
     def __init__(self, data):
@@ -14,7 +16,7 @@ class DoublyLinkedList:
 
     #=================================================================================#
     # 1. 삽입 메서드
-    # 1.1. 리스트의 맨 앞에 삽입
+    # { 1.1. 리스트의 맨 앞에 삽입 }
     def insert_first(self, data):
         new_node = Node(data)           # data를 가진 새로운 노드 생성.
         if self.head is None:           # 1. 빈 리스트인 경우.
@@ -42,7 +44,7 @@ class DoublyLinkedList:
         self.tail.next = new_node
         self.tail = new_node
 
-    # 1.3. target_data를 가진 노드 뒤에 data를 가진 노드 삽입
+    # { 1.3. target_data를 가진 노드 뒤에 data를 가진 노드 삽입 }
     def insert_after(self, target_data, data):
         new_node = Node(data)       # data를 가진 새로운 노드 생성.
         search_list = self.head     # 탐색을 위한 head 복사.
@@ -64,13 +66,13 @@ class DoublyLinkedList:
     
     #=================================================================================#
     # 2. 삭제 메서드        
-    # 2.1. 리스트의 맨 앞 노드 삭제
+    # { 2.1. 리스트의 맨 앞 노드 삭제 }
     def delete_first(self):
         self.head =  self.head.next                 # first_node <-> next_node(=head)
         self.head.prev = None                       # first_node  -> next_node(=head)
         return
 
-    # 2.2. 리스트의 맨 뒤 노드 삭제
+    # { 2.2. 리스트의 맨 뒤 노드 삭제 }
     def delete_last(self):
         self.tail = self.tail.prev                  # prev_node(=tail) <-> last_node
         self.tail.next = None                       # prev_node(=tail) <-  last_node
@@ -106,7 +108,7 @@ class DoublyLinkedList:
 
     #=================================================================================#
     # 3. 탐색 메서드
-    # 3.1. data 값을 가진 노드 검색
+    # { 3.1. data 값을 가진 노드 검색 }
     # 찾으면 해당 노드를 반환, 없으면 None 반환
     def search(self, data):
         search_list = self.head     # 탐색을 위한 head 복사.     
@@ -122,7 +124,7 @@ class DoublyLinkedList:
         print(f"{data} 탐색 실패")
         return None
 
-    # 3.2. head부터 tail까지 순서대로 출력
+    # { 3.2. head부터 tail까지 순서대로 출력 }
     def print_forward(self): 
         search_list = self.head                     # 탐색을 위한 head 복사.     
                  
@@ -135,7 +137,7 @@ class DoublyLinkedList:
                 break                                # 출력 => 반복문 종료.
         return
 
-    # 3.3. tail부터 head까지 순서대로 출력
+    # { 3.3. tail부터 head까지 순서대로 출력 }
     def print_backward(self):
         search_list_reverse = self.tail
         while True:
