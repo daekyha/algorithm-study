@@ -55,17 +55,12 @@ class Infix2Postfix:
         token = []
         
         for ch in expression:
-            if ch in ('+', '-', '*', '/', '^', ')'):        # 1) 토큰이 연산자인경우
+            if ch in ('+', '-', '*', '/', '^', '(', ')'):  # 1) 토큰이 연산자인경우
                 if num:                                     ## 리스트(num)에 담아둔 숫자를 합친 후 초기화 -> token에 추가.
                     token.append(''.join(num))
                     num=[]             
                 token.append(ch)
-                
-            elif ch == '(':                                 # 2) 토큰이 '(' 일 경우.
-                token.append(ch)                            ## "+3 ( ~"은 불가능. => 바로 토큰에 추가.
-                                                            ## "+3 ) ~" 인 경우는 존재함. => 1)에서 숫자 처리 후 토큰 추가.
-                          
-            else:                                           # 3) 토큰이 피연산자인 경우
+            else:                                           # 2) 토큰이 피연산자인 경우
                 num.append(ch)                              ## 숫자를 리스트(num)에 담아둠.
                 
         if num:
