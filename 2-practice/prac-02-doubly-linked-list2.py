@@ -42,7 +42,7 @@ class DoublyLinkedList:
         # 기존 리스트의 맨 뒤에 삽입
         new_node.prev = self.tail
         self.tail.next = new_node
-        self.tail = new_node
+        self.tail = new_node    
 
     # { 1.3. target_data를 가진 노드 뒤에 data를 가진 노드 삽입 }
     def insert_after(self, target_data, data):
